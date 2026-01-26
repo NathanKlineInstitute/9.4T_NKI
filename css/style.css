@@ -383,6 +383,28 @@ img {
     font-family: var(--font-heading);
 }
 
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    text-align: center;
+}
+
+.gallery-item .image-placeholder {
+    margin-bottom: 10px;
+    background: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #adb5bd;
+}
+
 /* Advisory Committee */
 .advisory-grid {
     display: grid;
