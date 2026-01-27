@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Navbar Toggle Logic
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -42,5 +43,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    });
+
+    // Lightbox Logic
+    // Create lightbox elements dynamically
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    `;
+    document.body.appendChild(lightbox);
+
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    // Add click event to all images with class 'zoomable'
+    const zoomableImages = document.querySelectorAll('.zoomable');
+    zoomableImages.forEach(img => {
+        img.addEventListener('click', function() {
+            lightbox.style.display = 'block';
+            lightboxImg.src = this.src;
+            lightboxCaption.innerHTML = this.alt;
+        });
+    });
+
+    // Close functionality
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+    }
+
+    // Close when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
     });
 });
